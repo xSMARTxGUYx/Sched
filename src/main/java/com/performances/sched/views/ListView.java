@@ -1,7 +1,6 @@
 package com.performances.sched.views;
 
 import com.performances.sched.entity.Event;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
