@@ -1,4 +1,4 @@
-package com.performances.repository;
+package com.performances.sched.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
