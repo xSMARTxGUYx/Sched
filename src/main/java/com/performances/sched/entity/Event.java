@@ -23,14 +23,6 @@ public class Event {
     @Column(name = "Date")
     private Date Date;
 
-    public Date getDate() {
-        return Date;
-    }
-
-    public void setDate(Date date) {
-        Date = date;
-    }
-
     @Column(name = "Start_Time")
     private LocalTime StartingTime;
 
@@ -56,6 +48,14 @@ public class Event {
 
     public void setArtistName(String artistName) {
         this.ArtistName = artistName;
+    }
+
+    public Date getDate() {
+        return Date;
+    }
+
+    public void setDate(Date date) {
+        Date = date;
     }
 
     public LocalTime getStartingTime() {
