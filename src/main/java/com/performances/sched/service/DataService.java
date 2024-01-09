@@ -1,9 +1,7 @@
 package com.performances.sched.service;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.performances.sched.entity.Event;
 import com.performances.sched.repository.EventRepository;
 
