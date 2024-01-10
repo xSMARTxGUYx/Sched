@@ -2,6 +2,7 @@ package com.performances.sched.views;
 
 import com.performances.sched.entity.Event;
 import com.performances.sched.service.DataService;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -41,7 +42,10 @@ public class ListView extends VerticalLayout{
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
         filterText.addValueChangeListener(e -> updateFilter());
 
-        var filterBar = new HorizontalLayout(filterText);
+        Button loginButton = new Button("Login/SignUp");
+        
+
+        var filterBar = new HorizontalLayout(filterText, loginButton);
         filterBar.setAlignItems(FlexComponent.Alignment.END);
         filterBar.addClassName("filter-bar");
         filterBar.setWidthFull();
