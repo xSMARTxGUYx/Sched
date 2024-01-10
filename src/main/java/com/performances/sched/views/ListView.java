@@ -2,6 +2,7 @@ package com.performances.sched.views;
 
 import com.performances.sched.entity.Event;
 import com.performances.sched.service.DataService;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -23,7 +24,7 @@ public class ListView extends VerticalLayout{
         addClassName("list-view");
         setSizeFull();
         gridConfig();
-        add(getfilterBar() ,grid);
+        add(getfilterBar(),grid);
         updateFilter();
     }
 
