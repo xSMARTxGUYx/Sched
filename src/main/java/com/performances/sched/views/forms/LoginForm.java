@@ -1,33 +1,36 @@
-package com.performances.sched.views;
+package com.performances.sched.views.forms;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 
-public class UserLogForm extends FormLayout {
+@CssImport("./my-styles/styles.css")
+public class LoginForm extends FormLayout {
 
     // Intantiate the text field variables
-    TextField firstName = new TextField ("First Name:");
-    TextField lastName = new TextField("Last Name:");
+    
     TextField userName = new TextField ("Username:");
-    TextField email = new TextField ("Email:");
+    PasswordField password = new PasswordField("Password:");
     
     // Initiate the Buttons for loging in or signing up 
     Button loginButton = new Button("Login");
     Button signupButton = new Button("Sign Up");
 
-    public UserLogForm() {
+    
+
+    public LoginForm() {
         //Add a Class name for CSS editing
         addClassName("login-form");
 
         // Add the components to the Form
-        add(firstName,
-        lastName,
-        userName,
-        email,
+        add(userName,
+        password,
         buttons());
     }
 
@@ -37,6 +40,18 @@ public class UserLogForm extends FormLayout {
         loginButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         signupButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
 
+        // Sign Up form access
+        signupButton.addClickListener(event -> {
+            // Close parent Dialog
+            getUI().ifPresent(ui -> ((Dialog) getParent().get()).close());
+            // Open Sign Up Dialog
+            Dialog dialog = new Dialog();
+            dialog.addClassName("dialog-form");
+            SignUpForm signUp = new SignUpForm();
+            dialog.add(signUp);
+            dialog.open();    
+        });
+
         // Add shortcut key function to Buttons
         loginButton.addClickShortcut(Key.ENTER);
 
@@ -44,7 +59,5 @@ public class UserLogForm extends FormLayout {
         return new HorizontalLayout(loginButton, signupButton);
 
     }
-    
-    
     
 }
