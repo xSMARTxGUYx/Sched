@@ -3,6 +3,7 @@ package com.performances.sched.views;
 import com.performances.sched.entity.Event;
 import com.performances.sched.service.DataService;
 import com.performances.sched.views.forms.LoginForm;
+import com.performances.sched.views.forms.SignUpForm;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -45,7 +46,9 @@ public class ListView extends VerticalLayout{
     private HorizontalLayout mainBar() {
         addClassName("main-bar");
         H1 label = new H1("Resuarant Performance Schedules");
-        Button loginButton = new Button("Login/SignUp");
+        Button loginButton = new Button("Login");
+        Button signupButton = new Button("Sign Up");
+        
 
         loginButton.addClickListener(event -> {
             Dialog dialog = new Dialog();
@@ -55,11 +58,19 @@ public class ListView extends VerticalLayout{
             dialog.open();
         });
 
+        signupButton.addClickListener(event -> {
+            Dialog dialog = new Dialog();
+            dialog.addClassName("dialog-form");
+            SignUpForm signUpForm = new SignUpForm();
+            dialog.add(signUpForm);
+            dialog.open();
+        });
+
         HorizontalLayout layout = new HorizontalLayout();
         layout.setWidthFull();
         layout.setAlignItems(Alignment.CENTER);
 
-        layout.add(label, new Span(), loginButton);
+        layout.add(label, new Span(), loginButton, signupButton);
         layout.setFlexGrow(1, label);
         
         return layout;

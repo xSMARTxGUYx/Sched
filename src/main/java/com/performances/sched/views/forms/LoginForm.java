@@ -27,7 +27,6 @@ public class LoginForm extends FormLayout {
     public LoginForm() {
         //Add a Class name for CSS editing
         addClassName("login-form");
-
         // Add the components to the Form
         add(userName,
         password,
