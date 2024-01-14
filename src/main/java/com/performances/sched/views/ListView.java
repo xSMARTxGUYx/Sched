@@ -45,7 +45,7 @@ public class ListView extends VerticalLayout{
 
     private HorizontalLayout mainBar() {
         addClassName("main-bar");
-        H1 label = new H1("Resuarant Performance Schedules");
+        H1 label = new H1("Restaurant Performance Schedules");
         Button loginButton = new Button("Login");
         Button signupButton = new Button("Sign Up");
         
