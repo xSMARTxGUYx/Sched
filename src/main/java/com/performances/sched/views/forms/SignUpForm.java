@@ -31,6 +31,7 @@ public class SignUpForm extends FormLayout {
         setResponsiveSteps(
             new ResponsiveStep("0",1)
         );
+        
 
         // Add Components to the page 
         add(firstName,
@@ -53,7 +54,7 @@ public class SignUpForm extends FormLayout {
             // Open new login Dialog
             Dialog dialog = new Dialog();
             dialog.addClassName("dialog-form");
-            LoginForm login = new LoginForm();
+            LoginForm login = new LoginForm(null);
             dialog.add(login);
             dialog.open();
         });

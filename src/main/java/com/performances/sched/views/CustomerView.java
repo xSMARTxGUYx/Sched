@@ -5,11 +5,11 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-@PageTitle("Admin")
-@Route("/admin")
-public class AdminView extends VerticalLayout {
+@PageTitle("Customer")
+@Route("/customer")
+public class CustomerView extends VerticalLayout {
     
-    public AdminView() {
-        add(new H1("Hello Admin!!"));
+    public CustomerView(){
+        add(new H1("Hello Customer!!!"));
     }
 }

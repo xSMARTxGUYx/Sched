@@ -53,7 +53,7 @@ public class ListView extends VerticalLayout{
         loginButton.addClickListener(event -> {
             Dialog dialog = new Dialog();
             dialog.addClassName("dialog-form");
-            LoginForm loginForm = new LoginForm();
+            LoginForm loginForm = new LoginForm(null);
             dialog.add(loginForm);
             dialog.open();
         });
