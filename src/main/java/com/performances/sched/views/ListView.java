@@ -2,6 +2,7 @@ package com.performances.sched.views;
 
 import com.performances.sched.entity.Event;
 import com.performances.sched.service.DataService;
+import com.performances.sched.service.LoginService;
 import com.performances.sched.views.forms.LoginForm;
 import com.performances.sched.views.forms.SignUpForm;
 import com.vaadin.flow.component.button.Button;
@@ -26,12 +27,20 @@ public class ListView extends VerticalLayout{
     Grid<Event>grid = new Grid<>(Event.class);
     TextField filterText = new TextField();
     DataService service;
+    private final LoginService loginService;
 
-    public ListView(DataService service){
+    public ListView(DataService service, LoginService loginService){
         this.service = service;
+        this.loginService = loginService;
+
+        LoginForm loginForm = new LoginForm(loginService);
+        loginForm.addLoginSuccessListner(this::loginHandler);
+
         addClassName("list-view");
+
         setSizeFull();
         gridConfig();
+
         add(mainBar(), getfilterBar(),grid);
         updateFilter();
     }

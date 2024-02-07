@@ -48,22 +48,16 @@ public class LoginForm extends FormLayout {
     }
 
     private void loginProcess() {
-        // Process the login request
-        String user = userName.getValue();
-        String pwd = password.getValue();
         loginButton.addClickListener(event -> {
-            try {
-                if (user != null && pwd != null && loginService != null) {
-                    loginService.login(user, pwd);
-                } else {
-                    Notification.show("Fill in the Required fields");
-                }
-            } catch (Exception e) {
-                Notification.show("An error occurred during login.");
-                e.printStackTrace(); // Log the exception for debugging purposes
+            String user = userName.getValue();
+            String pwd = password.getValue();
+            if(user != null && pwd != null){
+                String loginResult = loginService.login(user, pwd);
+                loginHandler(loginResult);
+            } else {
+                Notification.show("Fill in the Required fields");
             }
         });
-
     }
 
     private HorizontalLayout buttons() {
@@ -88,5 +82,24 @@ public class LoginForm extends FormLayout {
         return new HorizontalLayout(loginButton, signupButton);
 
     }
-    
+
+    private void loginHandler(String loginResult) {
+        switch(loginResult) {
+            case "admin":
+                getUI().ifPresent(ui -> ui.navigate("/admin"));
+                break;
+            case "customer":
+                getUI().ifPresent(ui -> ui.navigate("/customer"));
+                break;
+            case "invalid":
+                Notification.show("Enter Correct details");
+                break;
+            case "error":
+                Notification.show("An Error Occured, Try Again");
+                break;
+            default:
+                System.err.println("Error");
+                break;   
+        }
+    }
 }
