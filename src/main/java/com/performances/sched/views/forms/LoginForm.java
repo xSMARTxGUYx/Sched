@@ -1,5 +1,6 @@
 package com.performances.sched.views.forms;
 
+import com.performances.sched.service.LoginService;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -14,7 +15,6 @@ import com.vaadin.flow.component.textfield.TextField;
 public class LoginForm extends FormLayout {
 
     // Intantiate the text field variables
-    
     TextField userName = new TextField ("Username:");
     PasswordField password = new PasswordField("Password:");
     
@@ -22,11 +22,14 @@ public class LoginForm extends FormLayout {
     Button loginButton = new Button("Login");
     Button signupButton = new Button("Sign Up");
 
-    
+    LoginService login;
 
-    public LoginForm() {
+    public LoginForm(LoginService login) {
+        this.login = login;
+
         //Add a Class name for CSS editing
         addClassName("login-form");
+
         // Add the components to the Form
         add(userName,
         password,
@@ -50,13 +53,20 @@ public class LoginForm extends FormLayout {
             dialog.add(signUp);
             dialog.open();    
         });
-
         // Add shortcut key function to Buttons
         loginButton.addClickShortcut(Key.ENTER);
-
         // Return the buttons
         return new HorizontalLayout(loginButton, signupButton);
-
     }
     
+    public String loginSuccess() {
+        String user = userName.getValue();
+        String pwd = password.getValue();
+        if (login == null) {
+            return "Null";
+        }
+        String validLogin = login.login(user, pwd);
+        return validLogin;
+    }
+
 }
