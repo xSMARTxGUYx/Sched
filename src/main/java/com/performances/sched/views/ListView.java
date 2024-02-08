@@ -26,8 +26,10 @@ public class ListView extends VerticalLayout{
     Grid<Event>grid = new Grid<>(Event.class);
     TextField filterText = new TextField();
     DataService service;
+    LoginForm logForm;
 
-    public ListView(DataService service){
+    public ListView(DataService service, LoginForm logForm){
+        this.logForm = logForm;
         this.service = service;
         addClassName("list-view");
         setSizeFull();

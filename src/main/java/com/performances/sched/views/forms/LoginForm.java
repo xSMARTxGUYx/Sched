@@ -1,12 +1,17 @@
 package com.performances.sched.views.forms;
 
+
 import com.performances.sched.service.LoginService;
+import com.performances.sched.views.AdminView;
+import com.performances.sched.views.CustomerView;
+import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
@@ -55,18 +60,32 @@ public class LoginForm extends FormLayout {
         });
         // Add shortcut key function to Buttons
         loginButton.addClickShortcut(Key.ENTER);
+
+        // Add the Navigation to the login button
+        loginButton.addClickListener(this::loginSuccess);
+
         // Return the buttons
         return new HorizontalLayout(loginButton, signupButton);
     }
     
-    public String loginSuccess() {
+    public void loginSuccess(ClickEvent<Button> event) {
         String user = userName.getValue();
         String pwd = password.getValue();
+
         if (login == null) {
-            return "Null";
+            Notification.show("Login Unavailable");
+            return;
         }
+        
         String validLogin = login.login(user, pwd);
-        return validLogin;
+
+        if ("admin".equals(validLogin)){
+            getUI().ifPresent(ui -> ui.navigate(AdminView.class));
+        }else if ("customer".equals(validLogin)){
+            getUI().ifPresent(ui -> ui.navigate(CustomerView.class));
+        }else {
+            Notification.show("Invalid Login Credentials \nPlease try again.");
+        }
     }
 
 }

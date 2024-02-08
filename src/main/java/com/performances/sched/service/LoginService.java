@@ -24,12 +24,11 @@ public class LoginService {
         boolean isCustomer = customerRep.findByUsernameAndPassword(username, password) != null;
 
         if (isAdmin) {
-            return "Admin";
+            return "admin";
         } else if (isCustomer) {
-            return "Customer";
+            return "customer";
         } else {
-            return "Invalid";
+            return "invalid";
         }
     }
-
 }
